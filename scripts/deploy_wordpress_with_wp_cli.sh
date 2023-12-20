@@ -71,6 +71,13 @@ wp config create \
   wp plugin install $PLUGIN --activate --path=/var/www/html --allow-root
   wp plugin install $PLUGIN2 --activate --path=/var/www/html --allow-root
 
+  # Habilitar permalinks
+  wp rewrite structure '/%postname%/' \
+    --path=/var/www/html \
+    --allow-root
+  
+  # Modificamos automaticamente el nombre que establece por defecto el plugin wpd-hide-login
+  wp option update whl_page $WORDPRESS_HIDE_LOGIN --path=/var/www/html --allow-root
   # Copiamos el nuevo archivo .htaccess
   cp ../htaccess/.htaccess /var/www/html
 
